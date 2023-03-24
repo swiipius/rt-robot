@@ -195,15 +195,6 @@ int main(int argc, char **argv)
         l = digitalRead(LINE_LEFT);
         c = digitalRead(LINE_CENTER);
 
-        if (cpu_time_used > TAU)
-        {
-            redLight();
-        }
-        else
-        {
-            greenLight();
-        }
-
         if ((r == 0) && (l == 0) && (c == 0) && (last_dir != 0))
         {
             backward(SPEED + 10);
@@ -252,6 +243,15 @@ int main(int argc, char **argv)
 
         cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
         //printf("%f\n", cpu_time_used);
+        
+        if (cpu_time_used > TAU)
+        {
+            redLight();
+        }
+        else
+        {
+            greenLight();
+        }
     }
 
     return 0;
